@@ -8,7 +8,10 @@ import mongoose from "mongoose";
 import UserRoutes from './Users/routes.js';
 import session from 'express-session';
 import "dotenv/config";
-mongoose.connect("mongodb://127.0.0.1:27017/kanbas");
+
+const CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
+const DB_NAME = process.env.DB_NAME;
+mongoose.connect(CONNECTION_STRING, {dbName: DB_NAME});
 
 const branches = ["main", "a5", "a6", "project"];
 const strippedNetlifyUrl = process.env.NETLIFY_URL.replace("https://", "")
