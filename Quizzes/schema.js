@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const answerSchema = new mongoose.Schema({
   _id: { type: Number, unique: true },
-  val: String
+  val: String,
 });
 
 const questionSchema = new mongoose.Schema({
@@ -12,16 +12,17 @@ const questionSchema = new mongoose.Schema({
   description: String,
   points: { type: Number, default: 0 },
   mainAnswer: String,
-  possibleAnswers: [ answerSchema ]
+  possibleAnswers: [answerSchema],
 });
 
-const quizSchema = new mongoose.Schema({
+const quizSchema = new mongoose.Schema(
+  {
     _id: { type: String, required: true, unique: true },
     title: String,
     course: String,
     description: String,
     publish_status: { type: Boolean, default: false },
-    questions: [ questionSchema ],
+    questions: [questionSchema],
     quiz_type: { type: String, default: "Graded Quiz" },
     assignment_group: { type: String, default: "QUIZZES" },
     shuffle_answers: { type: Boolean, default: true },
@@ -33,6 +34,10 @@ const quizSchema = new mongoose.Schema({
     one_question_per: { type: Boolean, default: true },
     webcam_required: { type: Boolean, default: false },
     lock_question: { type: Boolean, default: false },
+    due_date: { type: Date, default: () => Date.now() },
+    available_date: { type: Date, default: () => Date.now() },
+    available__until_date: { type: Date, default: () => Date.now() },
   },
-  { collection: "quizzes"});
+  { collection: "quizzes" }
+);
 export default quizSchema;
