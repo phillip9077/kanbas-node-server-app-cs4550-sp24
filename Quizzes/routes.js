@@ -1,7 +1,8 @@
 import * as dao from "./dao.js";
 export default function QuizRoutes(app) {
   const getQuizzes = async (req, res) => {
-    const quizzes = await dao.findAllQuizzes();
+    const { cid } = req.params;
+    const quizzes = await dao.findAllQuizzes(cid);
     res.json(quizzes);
   };
   const getQuizById = async (req, res) => {
