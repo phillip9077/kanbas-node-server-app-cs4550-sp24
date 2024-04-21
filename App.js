@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import UserRoutes from './Users/routes.js';
 import session from 'express-session';
 import "dotenv/config";
+// import QuizRoutes from './Quizzes/routes.js';
 
 const CONNECTION_STRING = process.env.DB_CONNECTION_STRING;
 const DB_NAME = process.env.DB_NAME;
@@ -44,6 +45,7 @@ if (process.env.NODE_ENV !== "development") {
 }
 app.use(express.json());
 app.use(session(sessionOptions));
+// QuizRoutes(app);
 UserRoutes(app);
 ModuleRoutes(app);
 CourseRoutes(app);
