@@ -9,7 +9,7 @@ const questionSchema = new mongoose.Schema({
   _id: { type: String, required: true },
   title: String,
   type: { type: String, default: "Multiple" },
-  description: String,
+  description: { type: String, default: "" },
   points: { type: Number, default: 0 },
   mainAnswer: String,
   possibleAnswers: [answerSchema],
